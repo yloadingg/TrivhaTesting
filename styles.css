@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('images/BG.png'); 
+    background-size: cover;
+    font-family: 'Press Start 2P', cursive; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Sign Up Top Icons */
+
+.top-right-icons {
+    position: absolute;
+    top: 15px;
+    right: 12px;
+    display: flex;
+    gap: 10px;
+    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+}
+
+
+.icon:hover {
+    background-color: #218838;
+    border-radius: 15px;
+}
+
+
+.icon-img {
+    width: 42px; 
+    height: 42px;
+    display: block;
+}
+
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1); 
+    padding: 40px;
+    border-radius: 15px;
+    position: relative; 
+    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+}
+
+.header h1 {
+    font-size: 4rem;
+    color: rgb(36, 92, 22);
+    text-shadow: 4px 4px 0px #e7e7e7; 
+    margin-bottom: 20px;
+}
+
+.login-form {
+    background-color: #e2d4e2; 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.sign-up-btn {
+    width: 50%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+}
+
+.sign-up-btn:hover {
+    background-color: #218838;
+}
+
+.login-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Sign Up modal */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-out; 
+}
+
+.modal-content {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    text-align: center;
+    transform: scale(0); /* Start small */
+    animation: zoomIn 0.3s ease-out forwards; /* Zoom-in animation */
+}
+
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0); 
+    }
+    to {
+        transform: scale(1); 
+    }
+}
+
+/* Fade-in keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0; 
+    }
+    to {
+        opacity: 1; 
+    }
+}
+
+
+.modal.show {
+    display: flex;
+}
+.setting-option {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #28a745;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Back button */
+.back-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+    filter: drop-shadow(1px 1px 20px rgb(129, 51, 51));
+}
+
+.back-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Modal display on show */
+.modal.show {
+    display: flex;
+}
+
+
+/* Log In */
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.header {
+    text-align: center; 
+    padding: 10px; 
+}
+
+.header img {
+    max-width: 600px; 
+    height: auto; 
+    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+}
+
+.login-form {
+    background-color: #e2d4e2;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #218838;
+}
+
+.signup-link {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; 
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; 
+}
+
+/* Animations  */
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.container {
+    animation: zoomIn 0.5s ease-out;
+}
+
+/* Media Queries for Responsive Design //DI PA WORKING */
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px; 
+    }
+
+    .login-form, .signup-form {
+        width: 100%; 
+        padding: 15px;
+    }
+
+    .login-form input, .signup-form input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .sign-up-btn, .login-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .header h1 {
+        font-size: 3rem; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px; 
+    }
+
+    .login-form, .signup-form {
+        width: 100%; 
+        padding: 10px;
+    }
+
+    .login-form input, .signup-form input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .sign-up-btn, .login-btn {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .header h1 {
+        font-size: 2rem; 
+    }
+
+
+    .signup-link{
+        font-size: 10px;
+    } 
+    
+}
+

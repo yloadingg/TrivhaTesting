@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivha - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/FAVI.png">
+    <link rel="stylesheet" href="Menu.css">
+</head>
+<body>
+    <audio id="bg-music" autoplay loop>
+        <source src="BG/Trivha_BG.mp3" type="audio/mpeg">
+        <source src="BG/Trivha_BG.mp3" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="top-right-icons">
+        <a href="mailto:developer@example.com" class="icon">
+            <img src="images/headset (1).png" alt="Contact" class="icon-img">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <img src="images/Trivha.png" alt="Header Image"> 
+        </div>
+        
+        <div class="menu">
+            <button class="menu-btn" onclick="window.location.href='start.html'">Start</button>
+            <button class="menu-btn" id="achievementsBtn">Achievements</button>
+            <button class="menu-btn" id="settingsBtn">Settings</button>
+            <button class="menu-btn" id="exitGameBtn">Exit Game</button>
+        </div>
+
+        <div id="achievementsModal" class="modal">
+            <div class="modal-content">
+                <h3>ACHIEVEMENTS</h3>
+                <div class="achievement-list">
+        
+                    <!-- History Achievements -->
+                    <div class="achievement-category">
+                        <h4>History Achievements:</h4>
+                        <div class="achievement-item">
+                            <span>History Buff – Answer 10 history questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>History Expert – Answer 20 history questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>Master of History – Answer all 30 history questions correctly.</span>
+                        </div>
+                    </div>
+        
+                    <!-- Math Achievements -->
+                    <div class="achievement-category">
+                        <h4>Math Achievements:</h4>
+                        <div class="achievement-item">
+                            <span>Math Enthusiast – Answer 10 math questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>Math Prodigy – Answer 20 math questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>God of Math – Answer all 30 math questions correctly.</span>
+                        </div>
+                    </div>
+        
+                    <!-- Science Achievements -->
+                    <div class="achievement-category">
+                        <h4>Science Achievements:</h4>
+                        <div class="achievement-item">
+                            <span>Science Explorer – Answer 10 science questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>Science Guru – Answer 20 science questions correctly.</span>
+                        </div>
+                        <div class="achievement-item">
+                            <span>Science Sage – Answer all 30 science questions correctly.</span>
+                        </div>
+                    </div>
+        
+                </div>
+                <button id="closeAchievementsModal" class="close-btn">Back</button>
+            </div>
+        </div>
+        
+        <!-- Settings Modal -->
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <h3>Settings</h3>
+                <label>Music</label>
+                <input type="checkbox" id="musicSetting"><br>
+                <label>Sound</label>
+                <input type="checkbox" id="soundSetting"><br>
+                <label>Volume</label>
+                <input type="range" min="0" max="100" id="volumeSetting"><br>
+                <button id="closeSettingsModal" class="close-btn">Back</button>
+            </div>
+        </div>
+
+        <!-- Exit Game Modal -->
+        <div id="exitGameModal" class="modal">
+            <div class="modal-content">
+                <h3>Are you sure you want to exit?</h3>
+                <button id="yesExit" class="exit-btn">Yes</button>
+                <button id="noExit" class="exit-btn">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="menu.js"></script>
+</body>
+</html>

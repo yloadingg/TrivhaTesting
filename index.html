@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/FAVI.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Trivha - Sign Up</title>
+</head>
+<body>
+      
+    <!-- BG music di pa tapos -->
+    <audio id="bg-music" autoplay loop>
+        <source src="BG/Trivha_BG.mp3" type="audio/mpeg">
+        <source src="BG/Trivha_BG.mp3" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <!-- Settings and Contact Icons with images -->
+    <div class="top-right-icons">
+        <a href="#" class="icon" id="settingsIcon">
+            <img src="images/settings.png" alt="Settings" class="icon-img">
+        </a>
+        <a href="mailto:developer@example.com" class="icon">
+            <img src="images/headset (1).png" alt="Contact" class="icon-img">
+        </a>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="setting-option">
+                <span>Volume</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+            <div class="setting-option">
+                <span>Music</span>
+                <label class="switch">
+                    <input type="checkbox" id="musicToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-option">
+                <span>Sound</span>
+                <label class="switch">
+                    <input type="checkbox" id="soundToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button id="closeModal" class="back-btn">BACK</button>
+        </div>
+    </div>
+
+    <!-- Sign Up -->
+    <div class="container">
+        <div class="header">
+            <img src="images/Trivha.png" alt="Header Image"> 
+        </div>
+
+        <div class="login-form">
+            <input type="email" placeholder="Email">
+            <input type="text" placeholder="Username">
+            
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password">
+                <button type="button" id="togglePassword" class="toggle-btn">👁️</button>
+            </div>
+            
+            <button class="sign-up-btn">Sign up</button>
+            <p class="login-link">Already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </div>
+   
+
+    <script src="Quiz.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
