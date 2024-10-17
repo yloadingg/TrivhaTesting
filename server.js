@@ -43,7 +43,7 @@ console.log('DB_USER:', process.env.DB_USER);
 console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
 
 
-app.post('/api/signup', async (req, res) => {
+app.post('/signup', async (req, res) => {
     try {
         const { email, username, password } = req.body;
 
@@ -71,7 +71,7 @@ app.post('/api/signup', async (req, res) => {
         res.status(500).json({ message: 'Unexpected signup error.' });
     }
 });
-app.post('/api/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -91,9 +91,9 @@ app.post('/api/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ userId: user.id, isAdmin: user.isAdmin }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.json({ message: 'Login successful', token });
+        res.json({ message: 'Login successful', token, isAdmin: user.isAdmin });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'An error occurred during login' });
@@ -102,7 +102,18 @@ app.post('/api/login', async (req, res) => {
 
 
 app.get('*', (req, res) => {
+    const filePath = path.join(__dirname, req.url + '.html');
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            res.status(404).sendFile(path.join(__dirname, 'index.html'));
+        }
+    });
+});
+app.get('/signup', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 const PORT = process.env.PORT || 3000;

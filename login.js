@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = form.querySelector('input[type="password"]').value;
 
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch('/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 alert('Login successful!');
                 localStorage.setItem('token', data.token);
-                window.location.href = '/menu.html';
+                if (data.isAdmin) {
+                    window.location.href = '/admin.html'
+                } else {
+                    window.location.href = '/menu.html';
+                }
             } else {
                 alert(`Login failed: ${data.message}`);
             }
