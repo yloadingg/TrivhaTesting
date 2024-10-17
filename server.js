@@ -4,24 +4,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql2/promise');
 const path = require('path');
-require('dotenv').config();
-
 const app = express();
-
+require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
-
-// Serve static files from the root directory
 app.use(express.static(path.join(__dirname)));
-
-// Log all requests to debug
 app.use((req, res, next) => {
     console.log(`Request for: ${req.url}`);
     next();
 });
-
-// Handle requests for static files that incorrectly include /api/
 app.use('/api', (req, res, next) => {
     if (req.url.endsWith('.css') || req.url.endsWith('.js') || req.url.includes('images/')) {
         const filePath = path.join(__dirname, req.url);
@@ -76,7 +68,7 @@ app.post('/api/signup', async (req, res) => {
         res.status(201).json({ message: 'User created successfully', token });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Tanga tanga ng gumawa neto' });
+        res.status(500).json({ message: 'Unexpected signup error.' });
     }
 });
 app.post('/api/login', async (req, res) => {
@@ -108,12 +100,11 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
-// Serve index.html for all other routes (for SPA)
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
