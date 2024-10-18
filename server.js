@@ -115,7 +115,9 @@ app.get('/signup', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
 });
-
+app.get('/menu', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Menu.html'));
+});
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

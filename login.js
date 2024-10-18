@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.isAdmin) {
                     window.location.href = '/admin.html'
                 } else {
-                    window.location.href = '/menu.html';
+                    window.location.href = '/menu';
                 }
             } else {
                 alert(`Login failed: ${data.message}`);
