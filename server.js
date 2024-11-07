@@ -42,6 +42,22 @@ const pool = mysql.createPool({
 console.log('DB_USER:', process.env.DB_USER);
 console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
 
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.redirect('/login');
+    }
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) {
+            return res.redirect('/login');
+        }
+        req.user = user;
+        next();
+    });
+}
 
 app.post('/signup', async (req, res) => {
     try {
@@ -115,7 +131,7 @@ app.get('/signup', (req, res) => {
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
 });
-app.get('/menu', (req, res) => {
+app.get('/menu', authenticateToken, (req, res) => {
     res.sendFile(path.join(__dirname, 'Menu.html'));
 });
 const PORT = process.env.PORT || 3000;

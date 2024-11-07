@@ -39,7 +39,8 @@ const yesExit = document.getElementById('yesExit');
 const noExit = document.getElementById('noExit');
 
 yesExit.addEventListener('click', () => {
-    window.close(); 
+    localStorage.removeItem('token');
+    window.location.href = '/login';
 });
 
 // Handle No button (cancel exit)
