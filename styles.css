@@ -12,7 +12,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    cursor: url('images/FAVI.png'), auto;
 }
+
 
 /* Sign Up Top Icons */
 
@@ -141,6 +143,7 @@ body {
     }
 }
 
+/* ace samaranians*/
 
 .modal.show {
     display: flex;
@@ -380,4 +383,4 @@ input:checked + .slider:before {
     } 
     
 }
-
+                

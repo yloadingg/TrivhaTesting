@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trivha</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/FAVI.png">
+    <link rel="stylesheet" href="gamestart.css">
+</head>
+<body>
+
+<!-- Sound effect for button click -->
+<audio id="click-sound" src="BG/pop_trivha.wav" preload="auto"></audio>
+
+    <audio id="bg-music" autoplay loop>
+        <source src="BG/Trivha_BG.mp3" type="audio/mpeg">
+        <source src="BG/Trivha_BG.mp3" type="audio/ogg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="top-right-icons">
+        <a href="#" class="icon" id="settingsIcon">
+            <img src="images/settings.png" alt="Settings" class="icon-img">
+        </a>
+        <a href="mailto:developer@example.com" class="icon">
+            <img src="images/headset(1).png" alt="Contact" class="icon-img">
+        </a>
+    </div>
+
+    <div class="Return-icon">
+        <a href="Menu.html" class="icon" id="ReturnIcon">
+            <img src="images/Return.png" alt="Return" class="Return-img">
+        </a>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="setting-option">
+                <span>Volume</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+            <div class="setting-option">
+                <span>Music</span>
+                <label class="switch">
+                    <input type="checkbox" id="musicToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="setting-option">
+                <span>Sound</span>
+                <label class="switch">
+                    <input type="checkbox" id="soundToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <button id="closeModal" class="back-btn">BACK</button>
+        </div>
+    </div>
+  
+
+    <div class="menu-container" id="difficultyModal">
+        <h2>CHOOSE DIFFICULTY</h2>
+        <button class="difficulty-btn easy" onclick="openCategoryModal('EASY')">EASY</button>
+        <button class="difficulty-btn medium" onclick="openCategoryModal('MEDIUM')">MEDIUM</button>
+        <button class="difficulty-btn hard" onclick="openCategoryModal('HARD')">HARD</button>
+    </div>
+    
+    <!-- Category Modal -->
+    <div class="startmodal" id="categoryModal">
+        <div class="modal-content">
+            <p id="modal-difficulty">DIFFICULTY: </p>
+            <h2>CHOOSE YOUR SUBJECT</h2>
+            <button class="category-btn" onclick="selectCategory('Math')">MATH</button>
+            <button class="category-btn" onclick="selectCategory('Science')">SCIENCE</button>
+            <button class="category-btn" onclick="selectCategory('History')">HISTORY</button>
+            <button class="close-btn" onclick="closeCategoryModal()">CLOSE</button>
+        </div>
+    </div>
+
+    <!-- handle QA's -->
+    <div id="quizContainer" class="hidden">
+    <!-- Background Wrapper -->
+    <div class="quiz-background">
+        <div class="quiz-header">
+            <span class="progress" id="progress-text">1/15</span>
+            <span class="timer" id="timer">:10</span>
+        </div>
+
+        <!-- Question Box -->
+        <div class="question-box">
+            <p id="question-text">This is where your question will appear.</p>
+            <button class="hint-button" onclick="showHint()">HINT</button>
+        </div>
+
+        <!-- Answer Options -->
+        <div class="answer-options">
+            <button class="answer-btn" id="option1" onclick="selectAnswer(1)">A. Option 1</button>
+            <button class="answer-btn" id="option2" onclick="selectAnswer(2)">B. Option 2</button>
+            <button class="answer-btn" id="option3" onclick="selectAnswer(3)">C. Option 3</button>
+            <button class="answer-btn" id="option4" onclick="selectAnswer(4)">D. Option 4</button>
+        </div>
+
+        <!-- Back Button -->
+        <button class="back-btn" onclick="openBackModal()">
+            <img src="images/previous.png" alt="Back" class="back-icon">
+        </button>
+    </div>
+
+    <!-- Back Modal -->
+<!-- Back Modal -->
+<div id="back-modal" class="modal-fback">
+    <div class="modal-back-content">
+        <p>Are you sure you want to go back to difficulty selection?</p>
+        <button class="modal-btn" onclick="restartGame()">Yes</button>
+        <button class="modal-btn cancel" onclick="closeBackModal()">Cancel</button>
+    </div>
+</div>
+
+
+    
+
+<script src="game.js"></script>
+<script src="quizlogic.js"></script>
+</body>
+</html>
