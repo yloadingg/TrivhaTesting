@@ -1,45 +1,48 @@
 // Handle modals
-
-   // Handle modals
-   function openCategoryModal(difficulty) {
+function openCategoryModal(difficulty) {
     const difficultyModal = document.getElementById("difficultyModal");
     const categoryModal = document.getElementById("categoryModal");
     const modalDifficulty = document.getElementById("modal-difficulty");
+    const iconContainer = document.getElementById("iconContainer"); // Target the icons container
 
-    
     modalDifficulty.textContent = "Difficulty: " + difficulty;
 
-  
-    difficultyModal.style.animation = "zoomOut 0.3s forwards";
-    difficultyModal.addEventListener("animationend", function onAnimationEnd() {
-        difficultyModal.classList.add("hidden");
-        difficultyModal.style.display = "none"; 
-        difficultyModal.style.animation = ""; 
-        difficultyModal.removeEventListener("animationend", onAnimationEnd);
+    // Disable or hide icons
+    iconContainer.classList.add("hidden-icons"); // To hide icons
+    // iconContainer.classList.add("disabled-icons"); // To disable icons instead
 
-      
-        categoryModal.classList.remove("hidden");
-        categoryModal.style.display = "flex";
-        categoryModal.style.animation = "zoomIn 0.3s forwards";
+    difficultyModal.style.animation = "zoomOut 0.3s forwards"; // Apply zoom-out animation
+    difficultyModal.addEventListener("animationend", function onAnimationEnd() {
+        difficultyModal.classList.add("hidden"); // Hide the difficulty modal after animation
+        difficultyModal.style.display = "none"; // Set display to none to hide it
+        difficultyModal.style.animation = ""; // Reset animation
+        difficultyModal.removeEventListener("animationend", onAnimationEnd); // Remove event listener
+
+        categoryModal.classList.remove("hidden"); // Show the category modal
+        categoryModal.style.display = "flex"; // Set display to flex to show it
+        categoryModal.style.animation = "zoomIn 0.3s forwards"; // Apply zoom-in animation
     });
 }
 
 function closeCategoryModal() {
     const categoryModal = document.getElementById("categoryModal");
     const difficultyModal = document.getElementById("difficultyModal");
+    const iconContainer = document.getElementById("iconContainer"); // Target the icons container
 
- 
-    categoryModal.style.animation = "zoomOut 0.3s forwards";
+    // Enable or show icons
+    iconContainer.classList.remove("hidden-icons"); // To show icons
+    // iconContainer.classList.remove("disabled-icons"); // To re-enable icons
+
+    categoryModal.style.animation = "zoomOut 0.3s forwards"; // Apply zoom-out animation
     categoryModal.addEventListener("animationend", function onAnimationEnd() {
-        categoryModal.classList.add("hidden");
-        categoryModal.style.display = "none"; 
-        categoryModal.style.animation = ""; 
-        categoryModal.removeEventListener("animationend", onAnimationEnd);
+        categoryModal.classList.add("hidden"); // Hide the category modal after animation
+        categoryModal.style.display = "none"; // Set display to none to hide it
+        categoryModal.style.animation = ""; // Reset animation
+        categoryModal.removeEventListener("animationend", onAnimationEnd); // Remove event listener
 
-   
-        difficultyModal.classList.remove("hidden");
-        difficultyModal.style.display = "block";
-        difficultyModal.style.animation = "zoomIn 0.3s forwards";
+        difficultyModal.classList.remove("hidden"); // Show the difficulty modal
+        difficultyModal.style.display = "block"; // Set display to block to show it
+        difficultyModal.style.animation = "zoomIn 0.3s forwards"; // Apply zoom-in animation
     });
 }
 
@@ -52,41 +55,37 @@ function selectCategory(category) {
     console.log("Selected Category: " + category);
 
     // Close the category modal with animation
-    categoryModal.style.animation = "zoomOut 0.3s forwards";
+    categoryModal.style.animation = "zoomOut 0.3s forwards"; // Apply zoom-out animation
     categoryModal.addEventListener("animationend", function onAnimationEnd() {
-        categoryModal.classList.add("hidden");
-        categoryModal.style.display = "none"; 
-        categoryModal.style.animation = ""; 
-        categoryModal.removeEventListener("animationend", onAnimationEnd);
+        categoryModal.classList.add("hidden"); // Hide the category modal after animation
+        categoryModal.style.display = "none"; // Set display to none to hide it
+        categoryModal.style.animation = ""; // Reset animation
+        categoryModal.removeEventListener("animationend", onAnimationEnd); // Remove event listener
 
-        // Show the QA container
+        // Show the quiz container with animation
         quizContainer.classList.remove("hidden");
-        quizContainer.style.display = "block";
-        quizContainer.style.animation = "zoomIn 0.3s forwards";
+        quizContainer.style.display = "block"; // Set display to block to show it
+        quizContainer.style.animation = "zoomIn 0.3s forwards"; // Apply zoom-in animation
 
         // Use the game logic to load the first question
         loadQuiz(category);
     });
 }
 
-
 function openBackModal() {
     const backModal = document.getElementById('back-modal');
     backModal.style.display = 'flex'; // Make modal visible (flex to center it)
 }
 
-// Function to close the modal
 function closeBackModal() {
     const backModal = document.getElementById('back-modal');
     backModal.style.display = 'none'; // Hide the modal
 }
 
-// Function to restart the game
 function restartGame() {
     closeBackModal(); // Close the modal first
-    // Redirect to the difficulty selection page or restart game
-    // You can modify this to reload the page or navigate elsewhere
-    window.location.reload(); // Example: Refresh the page
+    // Reload the page to restart the game or navigate elsewhere
+    window.location.reload(); // Reloads the page to restart the quiz
 }
 
 
@@ -112,7 +111,7 @@ document.getElementById("closeModal").addEventListener("click", function () {
     difficultyModal.style.display = "block";
 });
 
-// Music
+// BG MUSIC
 window.addEventListener('load', function() {
     const audio = document.getElementById('bg-music');
     const volumeSlider = document.getElementById('volumeSlider');
@@ -204,14 +203,102 @@ window.addEventListener('load', function() {
 
 // Function to play the click sound
 function playClickSound() {
-    const sound = document.getElementById('click-sound');
-    if (sound) {
-        sound.currentTime = 0;  
-        sound.play();
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
     }
 }
 
+// Function to play the click sound
+function playClickSound() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle && soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+}
 
+// Save sound toggle state to localStorage
+function saveSoundSetting(isEnabled) {
+    localStorage.setItem('soundSetting', isEnabled ? 'on' : 'off');
+}
+
+// Load sound toggle state from localStorage
+function loadSoundSetting() {
+    const soundToggle = document.getElementById('soundToggle');
+    const savedSetting = localStorage.getItem('soundSetting');
+
+    if (soundToggle) {
+        soundToggle.checked = savedSetting === 'on'; // Set toggle based on saved setting
+    }
+}
+
+// Add event listener to save state when toggle is changed
+function initializeSoundToggle() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle) {
+        // Load the saved setting on page load
+        loadSoundSetting();
+
+        // Save the new setting whenever the toggle changes
+        soundToggle.addEventListener('change', function () {
+            saveSoundSetting(soundToggle.checked);
+        });
+    }
+}
+
+// Add event listener for clicks to play sound
 document.addEventListener('click', function(event) {
-    playClickSound();  
+    playClickSound();
 });
+
+// Initialize settings when the page loads
+window.onload = function () {
+    initializeSoundToggle();
+};
+
+
+// Create bubbles dynamically
+function createBubbles() {
+    const container = document.querySelector('.bubbles-container');
+
+    for (let i = 0; i < 20; i++) { // Create 20 bubbles
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        // Random size
+        if (Math.random() > 0.5) {
+            bubble.classList.add('large');
+        }
+
+        // Random position
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 6 + 6}s`; // Random animation duration
+
+        container.appendChild(bubble);
+    }
+}
+
+// Call the function when the page loads
+window.onload = createBubbles;
+
+// Default sound setting
+let soundEnabled = localStorage.getItem("soundEnabled") === "false" ? false : true;
+
+// Set the toggle's initial state based on the saved preference
+document.getElementById("soundToggle").checked = soundEnabled;
+
+// Add event listener to the sound toggle
+document.getElementById("soundToggle").addEventListener("change", (event) => {
+    soundEnabled = event.target.checked;
+    localStorage.setItem("soundEnabled", soundEnabled); // Save preference
+});
+
+

@@ -10,6 +10,12 @@
 </head>
 <body>
 
+    <audio id="times-up-sound" src="BG/TimesUp-Trivha.mp3" preload="auto"></audio>
+
+    <audio id="correct-sound" src="BG/Right-Trivha.mp3"></audio>
+    <audio id="wrong-sound" src="BG/Wrong-Trivha.mp3"></audio>
+    
+
 <!-- Sound effect for button click -->
 <audio id="click-sound" src="BG/pop_trivha.wav" preload="auto"></audio>
 
@@ -19,6 +25,9 @@
         Your browser does not support the audio element.
     </audio>
 
+    <!---Icons-->
+
+    <div id="iconContainer" class="top-icons">
     <div class="top-right-icons">
         <a href="#" class="icon" id="settingsIcon">
             <img src="images/settings.png" alt="Settings" class="icon-img">
@@ -33,33 +42,38 @@
             <img src="images/Return.png" alt="Return" class="Return-img">
         </a>
     </div>
+</div>
 
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <div class="setting-option">
-                <span>Volume</span>
-                <input type="range" id="volumeSlider" min="0" max="100" value="50">
-            </div>
-            <div class="setting-option">
-                <span>Music</span>
-                <label class="switch">
-                    <input type="checkbox" id="musicToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <div class="setting-option">
-                <span>Sound</span>
-                <label class="switch">
-                    <input type="checkbox" id="soundToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <button id="closeModal" class="back-btn">BACK</button>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="settings-modal modal">
+    <div class="modal-setcontent">
+        <div class="setting-option">
+            <span>Volume</span>
+            <input type="range" id="volumeSlider" min="0" max="100" value="50">
         </div>
+        <div class="setting-option">
+            <span>Music</span>
+            <label class="switch">
+                <input type="checkbox" id="musicToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting-option">
+            <span>Sound</span>
+            <label class="switch">
+                <input type="checkbox" id="soundToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <button id="closeModal" class="backSet-btn">BACK</button>
     </div>
-  
+</div>
+</div>
 
+
+
+    <!-- diff Modal -->
     <div class="menu-container" id="difficultyModal">
         <h2>CHOOSE DIFFICULTY</h2>
         <button class="difficulty-btn easy" onclick="openCategoryModal('EASY')">EASY</button>
@@ -71,7 +85,7 @@
     <div class="startmodal" id="categoryModal">
         <div class="modal-content">
             <p id="modal-difficulty">DIFFICULTY: </p>
-            <h2>CHOOSE YOUR SUBJECT</h2>
+            <h2 class="choose-sub">CHOOSE YOUR SUBJECT</h2>
             <button class="category-btn" onclick="selectCategory('Math')">MATH</button>
             <button class="category-btn" onclick="selectCategory('Science')">SCIENCE</button>
             <button class="category-btn" onclick="selectCategory('History')">HISTORY</button>
@@ -84,15 +98,17 @@
     <!-- Background Wrapper -->
     <div class="quiz-background">
         <div class="quiz-header">
-            <span class="progress" id="progress-text">1/15</span>
-            <span class="timer" id="timer">:10</span>
+            <span class="progress" id="progress-text">1/100</span>
+            <span class="timer" id="timer">:20</span>
         </div>
 
         <!-- Question Box -->
-        <div class="question-box">
-            <p id="question-text">This is where your question will appear.</p>
-            <button class="hint-button" onclick="showHint()">HINT</button>
-        </div>
+<div class="question-box">
+    <p id="question-text">This is where your question will appear.</p>
+    <button class="hint-button" onclick="showHint()">LIFELINES</button>
+    <p id="hint-text" style="display:none;">Hint will appear here</p> <!-- Hidden hint section -->
+</div>
+
 
         <!-- Answer Options -->
         <div class="answer-options">
@@ -102,7 +118,7 @@
             <button class="answer-btn" id="option4" onclick="selectAnswer(4)">D. Option 4</button>
         </div>
 
-        <!-- Back Button -->
+          <!-- Back Button -->
         <button class="back-btn" onclick="openBackModal()">
             <img src="images/previous.png" alt="Back" class="back-icon">
         </button>
@@ -119,9 +135,38 @@
 </div>
 
 
-    
+<!-- Result Container -->
+<div id="resultContainer" class="result-container hidden">
+    <div class="result-content">
+        <h2>Quiz Results</h2>
+        <p id="resultMessage"></p>
+        <p id="totalScore"></p>
+        <p id="averageTime"></p>
+        <button id="restartButton" onclick="restartQuiz()">Restart Quiz</button>
+        <button onclick="closeResultContainer()">Close</button>
+    </div>
+</div>
+
+
+
+
+<!-- Container for bubbles -->
+<div class="bubbles-container">
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <!-- Add more bubbles as needed -->
+</div>
+
+
 
 <script src="game.js"></script>
 <script src="quizlogic.js"></script>
+
 </body>
 </html>

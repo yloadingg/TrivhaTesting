@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
     <script>
         window.onload = function() {
             const token = localStorage.getItem('token');
@@ -9,6 +10,10 @@
             }
         }
     </script>
+    !-->
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trivha - Home</title>
@@ -17,6 +22,10 @@
     <link rel="stylesheet" href="Menu.css">
 </head>
 <body>
+
+    <!-- Sound effect for button click -->
+<audio id="click-sound" src="BG/pop_trivha.wav" preload="auto"></audio>
+
     <audio id="bg-music" autoplay loop>
         <source src="BG/Trivha_BG.mp3" type="audio/mpeg">
         <source src="BG/Trivha_BG.mp3" type="audio/ogg">
@@ -30,12 +39,17 @@
     </div>
 
     <div class="container">
-        <div class="header">
-            <img src="images/Trivha.png" alt="Header Image"> 
+        
+        <div class="med-header">
+            <img src="images/medium-trivha.png" alt="Header Image"> 
         </div>
+        <div class="sm-header">
+            <img src="images/small-trivha.png" alt="Header Image"> 
+        </div>
+
         
         <div class="menu">
-            <button class="menu-btn" onclick="window.location.href='start.html'">Start</button>
+            <button class="menu-btn" onclick="window.location.href='gamestart.html'">Start</button>
             <button class="menu-btn" id="achievementsBtn">Achievements</button>
             <button class="menu-btn" id="settingsBtn">Settings</button>
             <button class="menu-btn" id="exitGameBtn">Exit Game</button>
@@ -100,7 +114,7 @@
                 <label>Music</label>
                 <input type="checkbox" id="musicSetting"><br>
                 <label>Sound</label>
-                <input type="checkbox" id="soundSetting"><br>
+                <input type="checkbox" id="soundToggle"><br>
                 <label>Volume</label>
                 <input type="range" min="0" max="100" id="volumeSetting"><br>
                 <button id="closeSettingsModal" class="close-btn">Back</button>
@@ -116,6 +130,68 @@
             </div>
         </div>
     </div>
+
+    <!-- Container for bubbles -->
+<div class="bubbles-container">
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble large"></div>
+    <div class="bubble"></div>
+    <!-- Add more bubbles as needed -->
+</div>
+
+
+    <!-- SLide bar ORI -->
+<!-- <label>
+
+    <div class="slide">
+        <input type="checkbox">
+    <div class="toggle">
+        <span class="top_line common"></span>
+        <span class="middle_line common"></span>
+        <span class="bottom_line common"></span>
+        </div>
+        <img class ="userimg" src="images/user.jfif" alt="user picture">
+        <h1 class="t1">Profile</h1>
+        <ul class="slidelist">
+            <li><a>Upload Profile</a></li>
+            <li><a>Profile2</a></li>
+            <li><a>Profile3</a></li>
+            <li><a>Profile4</a></li>
+            <li><a>Profile5</a></li>
+            
+        </ul>
+        
+    </div>
+</label> -->
+
+<!-- Slide bar GPT-->
+<input type="checkbox" id="menu-toggle">
+<label for="menu-toggle">
+    <div class="toggle">
+        <span class="top_line common"></span>
+        <span class="middle_line common"></span>
+        <span class="bottom_line common"></span>
+    </div>
+</label>
+<div class="slide">
+    <img class="userimg" src="images/user.jfif" alt="user picture">
+    <h1 class="t1">Profile</h1>
+    <ul class="slidelist">
+        <li><a href="#">Upload Profile</a></li>
+        <li><a href="#">Profile2</a></li>
+        <li><a href="#">Profile3</a></li>
+        <li><a href="#">Profile4</a></li>
+        <li><a href="#">Profile5</a></li>
+    </ul>
+</div>
+
+
+
 
     <script src="menu.js"></script>
 </body>

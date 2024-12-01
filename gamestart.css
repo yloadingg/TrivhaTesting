@@ -2,6 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden;
+   
 }
 
 body {
@@ -13,21 +15,42 @@ body {
     align-items: center;
     height: 100vh;
     cursor: url('images/FAVI.png'), auto;
+   
+   
 }
 
- .Settings modal 
-    .modal.show {
-        display: flex;
-    }
+.timer {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #FF6347; /* Tomato color */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+/* Settings Modal Content */
+.modal-setcontent {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 20px;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+    border-radius: 10px;
+    width: 800px;
+    text-align: center;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Adds a shadow */
+}
+
+/* Setting Option */
 .setting-option {
     margin: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Press Start 2P', cursive;
-    
 }
 
+/* Toggle Switch Styles */
 .switch {
     position: relative;
     display: inline-block;
@@ -49,7 +72,7 @@ body {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 24px;
 }
 
@@ -62,19 +85,19 @@ body {
     left: 2px;
     bottom: 2px;
     background-color: white;
-    transition: .4s;
+    transition: 0.4s;
 }
 
 input:checked + .slider {
-    background-color: #28a745;
+    background-color: #28a745; /* Green when toggled on */
 }
 
 input:checked + .slider:before {
-    transform: translateX(26px);
+    transform: translateX(26px); /* Move toggle switch handle */
 }
 
-/* Back button */
-.back-btn {
+/* Back Button */
+.backSet-btn {
     background-color: #f44336;
     color: white;
     border: none;
@@ -85,11 +108,18 @@ input:checked + .slider:before {
     margin-top: 20px;
     font-family: 'Press Start 2P', cursive;
     filter: drop-shadow(1px 1px 20px rgb(129, 51, 51));
-} 
+}
 
-.back-btn:hover {
+.backSet-btn:hover {
     background-color: #d32f2f;
 }
+
+
+/* Modal display on show */
+.modal.show {
+    display: flex;
+}
+
 
 .modal {
     display: none; /* Hidden by default */
@@ -122,7 +152,7 @@ input:checked + .slider:before {
 }
 
 #difficultyModal {
-    z-index: 10; /* Lower priority */
+    z-index: 20; /* Lower priority */
     position: fixed;
 }
 
@@ -132,7 +162,7 @@ input:checked + .slider:before {
 }
 
 #categoryModal {
-    z-index: 20; /* Lower priority than settings modal */
+    z-index: 10; /* Lower priority than settings modal */
     position: fixed;
 }
 
@@ -180,21 +210,41 @@ input:checked + .slider:before {
     display: block;
     filter: drop-shadow(1px 1px 2px rgb(83, 167, 90));
     
+}
 
+/* Hide the top icons */
+.hidden-icons {
+    display: none; 
 }
 
 
-/* Main container */
+.disabled-icons a {
+    pointer-events: none; 
+    opacity: 0.5; 
+}
+
+#iconContainer {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hidden-icons {
+    opacity: 0; 
+    visibility: hidden; 
+}
+
+
+/* Diff/Main container */
 .menu-container {
     padding: 20px;
     border-radius: 10px;
-    width: 800px;
-    height: 500px;
+    width: 700px;
+    height: 550px;
     text-align: center;
     transform: scale(0); /* Start small */
     animation: zoomIn 0.3s ease-out forwards; /* Zoom-in animation */
     background-size: 600px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.233);
+
  
   
 }
@@ -211,19 +261,19 @@ input:checked + .slider:before {
     padding-top: 10px; 
     padding-bottom: 10px;
     filter: drop-shadow(1px 1px 9px rgb(226, 43, 43));
-   font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* Difficulty buttons */
 .difficulty-btn {
     display: block;
-    width: 500px;
-    height: 80px;
+    width: 550px;
+    height: 110px;
     padding: 15px;
     margin: 28px auto;
     border-radius: 20px;
-    font-size: 35px;
-    font-weight: bold;
+    font-size: 45px;
+    font-weight: bolder;
     color: white;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive; 
@@ -237,20 +287,17 @@ input:checked + .slider:before {
     transform: scale(0.95);
 }
 
-.easy { background-color: #28a745; }
-.medium { background-color: #ff8c42; }
-.hard { background-color: #e74c3c; }
+.easy { background-color: #2ebe57; }
+.medium { background-color: rgb(233, 123, 55); }
+.hard { background-color: #c93828; }
 
 
 
 /* Categmodal */
 .startmodal {
+
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: absolute;
     justify-content: center;
     align-items: center;
     animation: zoomIn 0.4s ease-in-out; /* Apply zoom-in animation */
@@ -271,7 +318,7 @@ input:checked + .slider:before {
 .category-btn {
     display: block;
     width: 600px;
-    height: 60px;
+    height: 100px;
     padding: 15px;
     margin: 10px auto;
     border-radius: 20px;
@@ -291,6 +338,8 @@ input:checked + .slider:before {
 }
 
 .close-btn {
+    display: block;
+    justify-self: center;
     margin-top: 20px;
     padding: 10px 20px;
     background-color:#d32f2f;
@@ -323,7 +372,7 @@ h2 {
     color: white;
     background-color: #e74c3c;
     padding: 10px;
-    border-radius: 100px;
+    border-radius: 10px;
     margin-bottom: 20px;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -406,8 +455,8 @@ h2 {
 .timer {
     background: #ff3333;
     color: #ffffff;
-    padding: 10px 15px;
-    border-radius: 50%;
+    padding: 16px 19px;
+    border-radius: 40%;
     font-weight: bold;
     font-size: 1rem;
     text-align: center;
@@ -425,6 +474,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -460,22 +510,24 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: space-between;
+   
 }
 
 .answer-btn {
-    width: 48%;
+    width: 500px;
     padding: 15px;
-    font-size: 28px;
+    font-size: 20px;
     background: #28a745; /* Light gray */
     border: none;
     border-radius: 10px;
-    font-weight: bold;
+    font-weight: 70;
     cursor: pointer;
     text-align: center;
     transition: all 0.2s ease-in-out;
     filter: drop-shadow(1px 1px 3px rgb(56, 177, 62));
     font-family: 'Press Start 2P', cursive; 
+margin-left: 50px;
+    
     
 }
 
@@ -496,7 +548,7 @@ h2 {
     background: transparent; 
     border: none;
     cursor: pointer;
-    width: 60px; 
+    width: 200px; 
     height: 60px; 
     display: flex;
     justify-content: center;
@@ -527,6 +579,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 20px; 
     background: rgba(0, 0, 0, 0.6); 
     display: none;
     justify-content: center;
@@ -543,6 +596,7 @@ h2 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
     width: 600px; 
     animation: fadeIn 0.3s ease-in-out; 
+    
     
 
 }
@@ -572,8 +626,8 @@ h2 {
 
 /* Yes Button */
 .modal-btn:not(.cancel) {
-    background: #00cc66; /* Green background */
-    color: #ffffff; /* White text */
+    background: #00cc66; 
+    color: #ffffff; 
 }
 
 .modal-btn:not(.cancel):hover {
@@ -604,8 +658,166 @@ h2 {
     }
 }
 
+
+/* Result Container Styles */
+.result-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.result-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 400px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+ 
+
 /* Responsive Design */
-@media screen and (max-width: 600px) {
+
+@media (max-width: 1130px) {
+
+    .quiz-background {
+        width: 1050px;
+
+    }
+
+    .question-box {
+        width: 1000px;
+    }
+
+    .answer-btn {
+        width: 440px;
+        margin-left: 40px;
+    }
+
+}
+
+@media (max-width: 830px) {
+
+    .quiz-background {
+
+        width: 780px;
+    }
+
+    .question-box {
+        width: 740px;
+    }
+
+    .answer-btn {
+        width: 310px;
+        margin-left: 35px;
+    }
+
+}
+
+
+
+@media (max-width: 800px) {
+
+    .startmodal {
+        width: 90%;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    
+}
+
+
+@media (max-width: 700px) {
+
+    
+    .menu-container {
+        width: 90%;
+    }
+
+
+    .difficulty-btn {
+        width: 90%;
+    }
+    
+    .modal-back-content {
+        width: 90%; 
+        height: 130px;
+        margin: 20px;
+    }
+
+
+    .modal-btn {
+        font-size: 0.9rem; 
+        padding: 8px 15px;
+    }
+
+    .modal-content {
+        width: 90%;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .category-btn {
+        width: 90%;
+        height: 80px;
+    }
+
+    
+    .menu-container h2 {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+
+
+    .quiz-background {
+        width: 640px;
+    }
+
+    .question-box {
+        width: 600px;
+    }
+
+    .answer-btn {
+        width: 260px;
+        margin-left: 25px;
+    }
+
+    .modal-back-content p {
+        font-size: 25px;
+        margin-bottom: 3px;
+    }
+
+    
+
+   
+}
+
+@media (max-width: 600px) {
+
+    .menu-container {
+        width: 90%;
+        height: 600px;
+    }
+
+    .difficulty-btn {
+        width: 90%;
+        height: 100px;
+    }
+
     .modal-back-content {
         width: 90%; 
     }
@@ -614,5 +826,279 @@ h2 {
         font-size: 0.9rem; 
         padding: 8px 15px;
     }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .category-btn {
+        width: 90%;
+    }
+    
+
+    .h2{
+        font-size: 10px;
+    }
+
+    .menu-container h2 {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .quiz-background {
+        width: 580px;
+    }
+
+    .question-box {
+        width: 540px;
+    }
+
+    .answer-btn {
+        width: 240px;
+        margin-left: 17px;
+    }
+
+    #question-text {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+    .hint-button {
+        width: 100px;
+        justify-content: center;
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+
+    .answer-btn {
+        font-size: 20px;
+    }
+
+    .modal-back-content p {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+  
+   
+}
+
+@media (max-width: 500px) {
+
+    .menu-container {
+        width: 90%;
+        height: 500px;
+    }
+
+    .menu-container h2 {
+        margin-bottom: 30px;
+    }
+
+    .difficulty-btn {
+        width: 90%;
+        font-size: 35px;
+        height: 80px;
+        margin-bottom: 20px;
+        margin-top: 15px;
+    }
+    .modal-back-content {
+        width: 90%; 
+    }
+
+    .modal-btn {
+        font-size: 0.9rem; 
+        padding: 8px 15px;
+    }
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .choose-sub {
+        font-size: 30px;
+    }
+
+    .category-btn {
+        width: 90%;
+        height: 70px;
+    }
+
+
+    .quiz-background {
+        width: 460px;
+    }
+
+    .question-box {
+        width: 420px;
+    }
+
+    .answer-btn {
+        width: 395px;
+        margin-left: 15px;
+    }
+
+    #question-text {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .hint-button {
+        width: 100px;
+        justify-content: center;
+        padding-left: 15px;
+        margin-top: 10px;
+    }
+
+    .answer-btn {
+        font-size: 15px;
+    }
+
+    .modal-back-content p {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+   
+}
+
+@media (max-width: 400px) {
+
+    .menu-container {
+        width: 90%;
+        height: 400px;
+    }
+
+    .menu-container h2 {
+        font-size: 30px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+
+    }
+    
+    .difficulty-btn {
+        width: 90%;
+        font-size: 20px;
+        height: 70px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+
+    }
+
+    .modal-back-content {
+        width: 90%; 
+    }
+
+    .modal-btn {
+        font-size: 0.9rem; 
+        padding: 8px 15px;
+    }
+
+
+    .modal-content {
+        width: 90%;
+    }
+
+    .choose-sub {
+        font-size: 20px;
+    }
+
+    .category-btn {
+        font-size: 20px;
+        width: 90%;
+        height: 50px;
+    }
+
+    .quiz-background {
+        width: 360px;
+    }
+
+    .question-box {
+        width: 320px;
+    }
+
+    .answer-btn {
+        width: 295px;
+        margin-left: 15px;
+    }
+ 
+    #question-text {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .hint-button {
+        font-size: 13px;
+        width: 80px;
+        height: 25px;
+        padding-left: 8px;
+        padding-bottom: 25px;
+    }
+
+    .answer-btn {
+        font-size: 15px;
+    }
+
+    .modal-back-content p {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+   
+}
+
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%S;
+    z-index: -1; /* Ensure bubbles are behind the content */
+    pointer-events: none; /* Prevent bubbles from interfering with interactions */
+}
+
+/* Individual bubbles */
+.bubble {
+    position: absolute;
+    bottom: -50px; /* Start from below the screen */
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+}
+
+/* Keyframes for floating and moving bubbles */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-150vh) scale(1.2); /* Move up and grow */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-300vh) scale(0.6);
+        opacity: 0;
+    }
+}
+
+/* Add some variation to each bubble */
+.bubble:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: -1s;
+}
+
+.bubble:nth-child(even) {
+    animation-duration: 8s;
+    animation-delay: -2s;
+}
+
+/* Bubble size variation */
+.bubble {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+}
+
+.bubble.large {
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
 }
 

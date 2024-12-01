@@ -50,6 +50,22 @@ body {
     filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
 }
 
+.small-header {
+    display: none;
+    padding: 10px;
+}
+
+.medium-header {
+    display: none;
+    padding: 10px;
+}
+
+.large-header {
+    display: inline-block;
+    text-align: center; 
+    padding: 10px; 
+}
+
 .header h1 {
     font-size: 4rem;
     color: rgb(36, 92, 22);
@@ -81,7 +97,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+   
 }
 
 .sign-up-btn:hover {
@@ -147,6 +163,8 @@ body {
 
 .modal.show {
     display: flex;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 .setting-option {
     margin: 20px 0;
@@ -156,7 +174,6 @@ body {
     font-family: 'Press Start 2P', cursive;
     
 }
-
 
 .switch {
     position: relative;
@@ -324,63 +341,241 @@ input:checked + .slider:before {
     animation: zoomIn 0.5s ease-out;
 }
 
+/* Add some variation to each bubble */
+.bubble:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: -1s;
+}
+
+.bubble:nth-child(even) {
+    animation-duration: 8s;
+    animation-delay: -2s;
+}
+
+/* Bubble size variation */
+.bubble {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+
+}
+
+.bubble.large {
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
+}
+
+
 /* Media Queries for Responsive Design //DI PA WORKING */
 
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
+
     .container {
-        padding: 20px; 
+        width: 600px;
+        position: absolute;
+        margin-left: 20px;
+        margin-right: 20px;
+      
     }
 
-    .login-form, .signup-form {
-        width: 100%; 
-        padding: 15px;
+    .small-header {
+        display: none;
     }
 
-    .login-form input, .signup-form input {
-        font-size: 14px;
-        padding: 8px;
+    .medium-header {
+        display: inline;
+        
     }
 
-    .sign-up-btn, .login-btn {
-        font-size: 14px;
-        padding: 8px;
+    .large-header {
+        display: none;
     }
 
-    .header h1 {
-        font-size: 3rem; 
+    .login-link {
+        margin-top: 10px;
+        font-size: 10px;
     }
+
+    
+  
+   
 }
 
+@media (max-width: 600px) {
 
-@media (max-width: 480px) {
     .container {
-        padding: 10px; 
+        width: 500px;
+        position: absolute;
+        margin-left: 20px;
+        margin-right: 20px;
+      
     }
 
-    .login-form, .signup-form {
-        width: 100%; 
-        padding: 10px;
+    .small-header {
+        display: inline-block;
     }
 
-    .login-form input, .signup-form input {
-        font-size: 12px;
-        padding: 6px;
+    .medium-header {
+        display: none;
     }
 
-    .sign-up-btn, .login-btn {
-        font-size: 12px;
-        padding: 6px;
+    .large-header {
+        display: none;
     }
 
-    .header h1 {
-        font-size: 2rem; 
-    }
-
-
-    .signup-link{
+    .login-link {
+        margin-top: 10px;
         font-size: 10px;
-    } 
+    }
+
+  
+   
+}
+
+@media (max-width: 500px) {
+
     
+
+    .container {
+        width: 400px;
+        position: absolute;
+        margin-left: 20px;
+        margin-right: 20px;
+      
+    }
+
+
+    .small-header {
+        display: inline-block;
+    }
+
+    .medium-header {
+        display: none;
+    }
+
+    .large-header {
+        display: none;
+    }
+
+    .login-link {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+   
+}
+
+@media (max-width: 400px) {
+
+    
+
+    .container {
+        width: 350px;
+        margin-left: 15px;
+        margin-right: 15px;
+      
+    }
+
+
+    .small-header {
+        display: inline-block;
+    }
+
+    .medium-header {
+        display: none;
+    }
+
+    .large-header {
+        display: none;
+    }
+
+    .login-link {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+    
+
+
+   
 }
                 
+/* Container for the bubbles */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure bubbles are behind the content */
+    pointer-events: none; /* Prevent bubbles from interfering with interactions */
+    filter: drop-shadow(1px 1px 20px rgb(190, 190, 190));
+}
+
+/* Individual bubbles */
+.bubble {
+    position: absolute;
+    bottom: -50px; /* Start from below the screen */
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    filter: drop-shadow(1px 1px 20px rgb(247, 247, 247));
+}
+
+
+/* Keyframes for floating and moving bubbles */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-150vh) scale(1.2); /* Move up and grow */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-300vh) scale(0.6);
+        opacity: 0;
+    }
+}
+
+
+#game-version {
+    position: absolute;
+   bottom: 35px; 
+    left: 710px; 
+    font-size: 7px; 
+    color: white; 
+    font-family: 'Press Start 2P', cursive; 
+   
+   
+}
+
+#copyright {
+    position: absolute; 
+    bottom: 15px;
+
+    left: 500px; 
+    color: white;
+    font-size: 10px; 
+    font-family: 'Press Start 2P', cursive; 
+  
+    
+}
+
+
+
+@media (max-width: 768px) {
+    #game-version {
+       bottom: 25px;
+        left: 30px;
+        font-size: 10px;
+       
+    }
+    #copyrigth {
+        font-size: 2px;
+        left: 50px;
+    }
+}

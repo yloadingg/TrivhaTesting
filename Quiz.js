@@ -117,19 +117,92 @@ window.addEventListener('load', function() {
 
 // Function to play the click sound
 function playClickSound() {
-    const sound = document.getElementById('click-sound');
-    if (sound) {
-        sound.currentTime = 0;  // Reset the sound to the beginning (in case it's still playing)
-        sound.play();
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
     }
 }
 
-// Add an event listener for click events on the entire document
+// Function to play the click sound
+function playClickSound() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle && soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+}
+
+// Save sound toggle state to localStorage
+function saveSoundSetting(isEnabled) {
+    localStorage.setItem('soundSetting', isEnabled ? 'on' : 'off');
+}
+
+// Load sound toggle state from localStorage
+function loadSoundSetting() {
+    const soundToggle = document.getElementById('soundToggle');
+    const savedSetting = localStorage.getItem('soundSetting');
+
+    if (soundToggle) {
+        soundToggle.checked = savedSetting === 'on'; // Set toggle based on saved setting
+    }
+}
+
+// Add event listener to save state when toggle is changed
+function initializeSoundToggle() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle) {
+        // Load the saved setting on page load
+        loadSoundSetting();
+
+        // Save the new setting whenever the toggle changes
+        soundToggle.addEventListener('change', function () {
+            saveSoundSetting(soundToggle.checked);
+        });
+    }
+}
+
+// Add event listener for clicks to play sound
 document.addEventListener('click', function(event) {
-    playClickSound();  // Play the click sound for any click event
+    playClickSound();
 });
 
+// Initialize settings when the page loads
+window.onload = function () {
+    initializeSoundToggle();
+};
 
+
+
+// Create bubbles dynamically
+function createBubbles() {
+    const container = document.querySelector('.bubbles-container');
+
+    for (let i = 0; i < 20; i++) { // Create 20 bubbles
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        // Random size
+        if (Math.random() > 0.5) {
+            bubble.classList.add('large');
+        }
+
+        // Random position
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 6 + 6}s`; // Random animation duration
+
+        container.appendChild(bubble);
+    }
+}
+
+// Call the function when the page loads
+window.onload = createBubbles;
 
 
 

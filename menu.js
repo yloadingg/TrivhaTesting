@@ -51,8 +51,8 @@ noExit.addEventListener('click', () => {
 // BackGround Music
 window.addEventListener('load', function() {
     const audio = document.getElementById('bg-music');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const musicToggle = document.getElementById('musicToggle');
+    const volumeSlider = document.getElementById('volumeSetting');
+    const musicToggle = document.getElementById('musicSetting');
 
     // Check if there's saved audio state in localStorage
     const savedMutedState = localStorage.getItem('audioMuted');
@@ -87,7 +87,7 @@ window.addEventListener('load', function() {
     }
 
     // Handle the volume change
-    volumeSlider.addEventListener('input', function() {
+    volumeSetting.addEventListener('input', function() {
         const volume = volumeSlider.value / 100;
         audio.volume = volume;
         localStorage.setItem('audioVolume', volume); // Save volume in localStorage
@@ -128,3 +128,90 @@ window.addEventListener('load', function() {
         tryToPlayAudio();
     }
 });
+
+// Function to play the click sound
+function playClickSound() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+}
+
+// Function to play the click sound
+function playClickSound() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle && soundToggle.checked) { // Play sound only if toggle is on
+        const sound = document.getElementById('click-sound');
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play();
+        }
+    }
+}
+
+// Save sound toggle state to localStorage
+function saveSoundToggle(isEnabled) {
+    localStorage.setItem('soundToggle', isEnabled ? 'on' : 'off');
+}
+
+// Load sound toggle state from localStorage
+function loadSoundToggle() {
+    const soundToggle = document.getElementById('soundToggle');
+    const savedSetting = localStorage.getItem('soundSetting');
+
+    if (soundToggle) {
+        soundToggle.checked = savedSetting === 'on'; // Set toggle based on saved setting
+    }
+}
+
+// Add event listener to save state when toggle is changed
+function initializeSoundToggle() {
+    const soundToggle = document.getElementById('soundToggle');
+    if (soundToggle) {
+        // Load the saved setting on page load
+        loadSoundSetting();
+
+        // Save the new setting whenever the toggle changes
+        soundToggle.addEventListener('change', function () {
+            saveSoundToggle(soundToggle.checked);
+        });
+    }
+}
+
+// Add event listener for clicks to play sound
+document.addEventListener('click', function(event) {
+    playClickSound();
+});
+
+// Initialize settings when the page loads
+window.onload = function () {
+    initializeSoundToggle();
+};
+
+// Create bubbles dynamically
+function createBubbles() {
+    const container = document.querySelector('.bubbles-container');
+
+    for (let i = 0; i < 20; i++) { // Create 20 bubbles
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        
+        // Random size
+        if (Math.random() > 0.5) {
+            bubble.classList.add('large');
+        }
+
+        // Random position
+        bubble.style.left = `${Math.random() * 100}vw`;
+        bubble.style.animationDuration = `${Math.random() * 6 + 6}s`; // Random animation duration
+
+        container.appendChild(bubble);
+    }
+}
+
+// Call the function when the page loads
+window.onload = createBubbles;

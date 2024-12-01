@@ -17,6 +17,14 @@ body {
     padding: 10px; 
 }
 
+.med-header {
+    
+}
+
+.sm-header {
+    display: none;
+}
+
 .header img {
     max-width: 500px; 
     height: auto; 
@@ -45,12 +53,12 @@ body {
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.1); 
-    width: 700px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 650px;
     padding: 50px;
     border-radius: 15px;
     position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
     animation: zoomIn 0.5s ease-in-out; /* Apply zoom-in animation */
 }
 
@@ -71,8 +79,9 @@ body {
     border: none;
     padding: 15px 20px;
     margin: 10px auto;
-    width: 300px;
-    font-size: 1.3rem;
+    width: 350px;
+   height: 60px;
+    font-size: 1.3rem;            
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
@@ -118,7 +127,7 @@ body {
     color: white;
     padding: 10px 20px;
     margin-top: 20px;
-    border: none;
+    border: none;           
     border-radius: 5px;
     cursor: pointer;
     font-family: 'Press Start 2P', cursive;
@@ -236,4 +245,293 @@ body {
         transform: scale(1);
         opacity: 1;
     }
+}
+
+
+
+@media (max-width: 700px) {
+
+    .container {
+       width: 75%;
+       margin-left: 2em;
+       margin-right: 2em;
+    }
+
+
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 75%;
+        margin-left: 2em;
+        margin-right: 2em;
+
+    }
+   
+}
+
+@media (max-width: 500px) {
+
+    .sm-header {
+        display: block;
+    }
+
+    .med-header {
+        display: none;
+    }
+
+    .container {
+        width: 60%;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    .menu .menu-btn {
+        width: 100%;   
+        height: 60px; 
+    }
+
+    
+
+
+    
+}
+
+@media (max-width: 400px) {
+
+    .container {
+        width: 60%;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    .menu .menu-btn {
+        width: 100%;   
+        height: 50px; 
+    }
+
+
+   
+}
+
+/* Add some variation to each bubble */
+.bubble:nth-child(odd) {
+    animation-duration: 7s;
+    animation-delay: -1s;
+}
+
+.bubble:nth-child(even) {
+    animation-duration: 8s;
+    animation-delay: -2s;
+}
+
+/* Bubble size variation */
+.bubble {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+
+}
+
+.bubble.large {
+    width: 70px;
+    height: 70px;
+    opacity: 0.8;
+}
+
+/* Container for the bubbles */
+.bubbles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure bubbles are behind the content */
+    pointer-events: none; /* Prevent bubbles from interfering with interactions */
+    filter: drop-shadow(1px 1px 20px rgb(255, 255, 255));
+}
+
+/* Individual bubbles */
+.bubble {
+    position: absolute;
+    bottom: -50px; /* Start from below the screen */
+   background-color: white;
+    border-radius: 50%;
+    animation: float 6s infinite ease-in-out;
+    filter: drop-shadow(1px 1px 20px rgb(190, 190, 190));
+}
+
+
+/* Keyframes for floating and moving bubbles */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(0.6);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-150vh) scale(1.2); /* Move up and grow */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-300vh) scale(0.6);
+        opacity: 0;
+    }
+}
+
+/* slide bar     /     profile settings */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .slide{
+    height: 100%;
+    width: 300px;
+    position: absolute;
+    background-color: #1b5a15;
+    transition: 0.5s ease;
+    left: 0.4px;
+    top: -0.4px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transform: translateX(-200px);
+  }
+
+  .t1{
+    text-align: right;
+    font-size: 120%;
+    padding: 20px 0;
+    padding-right: 98px;
+  }
+
+  .slidelist{
+    font-size: 80%;
+    list-style: none;
+
+  }
+
+  .userimg{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto 0;
+  }
+
+  ul li a{
+    display: block;
+    padding: 10px 0;
+    padding-left: 30px;
+
+  }
+
+  input{
+    display: none;
+    visibility: hidden;
+    -webkit-appearance: none;
+    left: 30px;
+    position: absolute;
+  }
+
+  .toggle{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #218838;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 10px; /**originally 10px**/
+    left: 240px;
+    top: 17px;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+
+
+  .toggle .common{
+    position: absolute;
+    height: 3px;
+    width: 25px;
+    background-color: #1b5a15;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    
+  }
+
+
+  .toggle .top_line{
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .toggle .middle_line{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .toggle .bottom_line{
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  input:checked ~ .toggle {
+    left: 440px; /* Move with the slide */
+}
+
+  input:checked ~ .toggle .top_line{
+    left: 2px;
+    top: 17px;
+    width: 35px;
+    transform: rotate(45deg);
+  }
+
+  input:checked ~ .toggle .bottom_line{
+    left: 2px;
+    top: 17px;
+    width: 35px;
+    transform: rotate(-45deg);
+  }
+
+  input:checked ~ .toggle .middle_line{
+
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  input:checked ~ .slide{
+    transform: translateX(0);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+
+  #game-version {
+    position: absolute;
+    bottom: 35px; 
+    left: 620px; 
+    font-size: 7px; 
+    color: white; 
+    font-family: 'Press Start 2P', cursive; 
+   
+   
+}
+
+#copyright {
+    position: absolute; 
+    bottom: 20px;
+    left: 530px; 
+    color: white;
+    font-size: 7px; 
+    font-family: 'Press Start 2P', cursive; 
+  
+    
 }
