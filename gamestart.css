@@ -2,8 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
-   
+    overflow: hidden;  
 }
 
 body {
@@ -14,9 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    cursor: url('images/FAVI.png'), auto;
-   
-   
+    cursor: url('images/FAVI.png'), auto;   
 }
 
 .timer {
@@ -280,17 +277,19 @@ input:checked + .slider:before {
     transition: transform 0.1s ease;
     animation: zoomIn 0.5s ease-in-out; /* Apply zoom-in animation */
     filter: drop-shadow(1px 1px 3px rgb(0, 0, 0));
-  
 }
+
+.easy:hover { background-color: #218838;}
+.medium:hover { background-color: rgb(228, 105, 29);}
+.hard:hover { background-color: #a02a1d;}
 
 .difficulty-btn:active {
     transform: scale(0.95);
 }
 
 .easy { background-color: #2ebe57; }
-.medium { background-color: rgb(233, 123, 55); }
+.medium { background-color: rgb(231, 118, 47); }
 .hard { background-color: #c93828; }
-
 
 
 /* Categmodal */
@@ -336,6 +335,8 @@ input:checked + .slider:before {
 .category-btn:active {  
     transform: scale(0.95);
 }
+
+.category-btn:hover { background-color: #9720a1; }
 
 .close-btn {
     display: block;
@@ -541,6 +542,19 @@ margin-left: 50px;
     color: #ffffff;
 }
 
+
+.hidden {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
 /*back Button*/
 .back-btn {
     position: relative; 
@@ -659,35 +673,85 @@ margin-left: 50px;
 }
 
 
-/* Result Container Styles */
-.result-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+        /* Result Container Styles */
+        .result-container {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .result-content {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0); /* Light gradient background */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Soft shadow */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px;
+            text-align: center;
+            width: 800px;
+            height: 250px;
+            animation: popIn 0.5s ease; /* Add pop-in animation */
+        }
+
+        /* Headings and Text */
+        .result-content h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .result-content p {
+            font-size: 1.2rem;
+            color: #000000; /* Subtle text color */
+            margin: 10px 0;
+        }
+
+        /* Buttons */
+        .result-content button {
+            padding: 10px 20px; 
+            margin: 10px; 
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            font-family: 'Press Start 2P', cursive;     
+            color: white;
+        }
+
+
+        .result-content button:hover {
+            background: #1dbe6e; 
+            transform: scale(1.1); /* Slightly enlarge */
+        }
+
+        .result-content button{
+            background: #1dbe6e; 
+        }
+
+
+
+        .result-content button:active {
+            transform: scale(1); /* Reset scale on click */
+        }
+
+/* Pop-in Animation */
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.result-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    width: 400px;
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
- 
 
 /* Responsive Design */
 
@@ -695,7 +759,6 @@ button {
 
     .quiz-background {
         width: 1050px;
-
     }
 
     .question-box {
@@ -712,7 +775,6 @@ button {
 @media (max-width: 830px) {
 
     .quiz-background {
-
         width: 780px;
     }
 
@@ -835,7 +897,6 @@ button {
         width: 90%;
     }
     
-
     .h2{
         font-size: 10px;
     }
@@ -846,15 +907,15 @@ button {
     }
 
     .quiz-background {
-        width: 580px;
-    }
-
-    .question-box {
         width: 540px;
     }
 
+    .question-box {
+        width: 500px;
+    }
+
     .answer-btn {
-        width: 240px;
+        width: 220px;
         margin-left: 17px;
     }
 
@@ -870,7 +931,7 @@ button {
     }
 
     .answer-btn {
-        font-size: 20px;
+        font-size: 17px;
     }
 
     .modal-back-content p {
@@ -991,7 +1052,6 @@ button {
         padding: 8px 15px;
     }
 
-
     .modal-content {
         width: 90%;
     }
@@ -1040,6 +1100,10 @@ button {
         font-size: 18px;
         margin-bottom: 0;
     }
+
+    .result-content p {
+        font-size: 5px;
+    }
    
 }
 
@@ -1048,7 +1112,7 @@ button {
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%S;
+    width: 100%;
     z-index: -1; /* Ensure bubbles are behind the content */
     pointer-events: none; /* Prevent bubbles from interfering with interactions */
 }
@@ -1060,6 +1124,7 @@ button {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     animation: float 6s infinite ease-in-out;
+    filter: drop-shadow(1px 1px 7px rgb(255, 255, 255));
 }
 
 /* Keyframes for floating and moving bubbles */
@@ -1102,3 +1167,92 @@ button {
     opacity: 0.8;
 }
 
+/* Lifeline Modal */
+.lifeline-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+   
+}
+
+.lifeline-modal.hidden {
+    display: none;
+}
+
+.lifeline-modal .modal-content {
+    background: #fff;
+ 
+    padding: 50px;
+    border-radius: 12px;
+    text-align: center;
+    width: 800px;
+    z-index: 10000;
+    font-family: 'Press Start 2P', cursive; 
+}
+
+.lifeline-option {
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 15px;
+    border: none;
+    background-color: #218838;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+    font-family: 'Press Start 2P', cursive; 
+}
+
+.lifeline-option1 {
+    padding: 15px;
+    margin-top: 40px;
+    font-size: 15px;
+    border: none;
+    background-color: #a4a4a4;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow */
+    font-family: 'Press Start 2P', cursive; 
+}
+
+.lifeline-modal .lifeline-option:hover {
+    background-color: #2dbb4c;
+}
+
+.modal-content .Lfclose-btn {
+    margin-top: 40px;
+    padding: 10px 20px;
+    background-color:  #ff3333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Press Start 2P', cursive; 
+}
+
+.Lfclose-btn:hover {
+    background-color: #8d1e1e;
+}
+
+
+#copyright {
+    position: absolute; 
+    bottom: 20px;
+    left: 520px; 
+    right: 250px;
+    color: white;
+    font-size: 10px; 
+    font-family: 'Press Start 2P', cursive; 
+  
+    
+}

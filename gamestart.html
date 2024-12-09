@@ -105,9 +105,21 @@
         <!-- Question Box -->
 <div class="question-box">
     <p id="question-text">This is where your question will appear.</p>
-    <button class="hint-button" onclick="showHint()">LIFELINES</button>
+    <button class="hint-button" onclick="showLifelineModal()">LIFELINES</button>
     <p id="hint-text" style="display:none;">Hint will appear here</p> <!-- Hidden hint section -->
 </div>
+
+<!-- Lifeline Modal -->
+<div id="lifelineModal" class="lifeline-modal hidden">
+    <div class="modal-content">
+        <h3>Choose a Lifeline</h3>
+        <button class="lifeline-option" data-lifeline="extraTime" onclick="useLifeline('extraTime')">Add 30s</button>
+        <button class="lifeline-option" data-lifeline="removeAnswer" onclick="useLifeline('removeAnswer')">Remove 1 Answer</button>
+        <button class="lifeline-option1" disabled>Coming Soon</button>
+        <button class="Lfclose-btn" onclick="closeLifelineModal()">Close</button>
+    </div>
+</div>
+
 
 
         <!-- Answer Options -->
@@ -118,11 +130,13 @@
             <button class="answer-btn" id="option4" onclick="selectAnswer(4)">D. Option 4</button>
         </div>
 
+
           <!-- Back Button -->
         <button class="back-btn" onclick="openBackModal()">
             <img src="images/previous.png" alt="Back" class="back-icon">
         </button>
     </div>
+ </div>
 
     <!-- Back Modal -->
 <!-- Back Modal -->
@@ -142,12 +156,9 @@
         <p id="resultMessage"></p>
         <p id="totalScore"></p>
         <p id="averageTime"></p>
-        <button id="restartButton" onclick="restartQuiz()">Restart Quiz</button>
-        <button onclick="closeResultContainer()">Close</button>
+        <button id="restartButton" onclick="restartQuiz()">CLOSE</button>
     </div>
-</div>
-
-
+</div>      
 
 
 <!-- Container for bubbles -->
@@ -163,7 +174,9 @@
     <!-- Add more bubbles as needed -->
 </div>
 
-
+<footer id="copyright">
+    © O'Devs 2024. All rights reserved.
+</footer>
 
 <script src="game.js"></script>
 <script src="quizlogic.js"></script>

@@ -18,7 +18,7 @@ body {
 }
 
 .med-header {
-    
+    margin-bottom: 10px;
 }
 
 .sm-header {
@@ -34,7 +34,7 @@ body {
 /* Top ICONS */
 .top-right-icons {
     position: absolute;
-    top: 7px;
+    top: 14px;
     right: 12px;
     display: flex;
     filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
@@ -62,9 +62,109 @@ body {
     animation: zoomIn 0.5s ease-in-out; /* Apply zoom-in animation */
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.modal-content {
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin-left: 2em;
+    margin-right: 2em;
+    border-radius: 10px;
+    text-align: center;
+    width: 700px;
+    font-family: 'Press Start 2P', cursive;
+
+}
+
+.setting-option {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* Slider Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch-input {
+    display: none; /* Hide the actual checkbox */
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.switch-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+/* Active state for slider */
+.switch-input:checked + .switch-slider {
+    background-color: #28a745;
+}
+
+.switch-input:checked + .switch-slider:before {
+    transform: translateX(26px);
+}
+
+/* Back button */
+.back-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'Press Start 2P', cursive;
+    filter: drop-shadow(1px 1px 20px rgb(129, 51, 51));
+}
+
+.back-btn:hover {
+    background-color: #d32f2f;
+}
+
+
+
 /* Trivha header */
 .header h1 {
-    font-size: 4rem;
+    font-size: 7rem;
     color: rgb(255, 255, 255);
     text-shadow: 4px 4px 0px #1b5a15;
     margin-bottom: 20px;
@@ -74,15 +174,16 @@ body {
 /* Button Styling */
 .menu .menu-btn {
     display: block;
-    background-color: #28a745;
+    background-color: #2ebe57;
     color: white;
     border: none;
     padding: 15px 20px;
-    margin: 10px auto;
-    width: 350px;
-   height: 60px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 550px;
+    height: 70px;
     font-size: 1.3rem;            
-    border-radius: 10px;
+    border-radius: 30px;
     text-align: center;
     cursor: pointer;
     box-shadow: 3px 3px 0px #1e6f38;
@@ -90,7 +191,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    filter: drop-shadow(1px 1px 20px rgb(83, 167, 90));
+    filter: drop-shadow(1px 1px 10px rgb(83, 167, 90));
 }
 
 .menu-btn:hover {
@@ -117,9 +218,9 @@ body {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 500px;
+    width: 800px;
     font-family: 'Press Start 2P', cursive;
-    filter: drop-shadow(1px 1px 15px rgb(255, 255, 255));
+    filter: drop-shadow(1px 1px 2px rgb(255, 255, 255));
 }
 
 .close-btn, .exit-btn {
@@ -144,6 +245,7 @@ body {
     justify-content: center;
     align-items: center;
     height: auto;
+    width: 800px;
 }
 
 
@@ -162,16 +264,15 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
-
 #achievementsModal .modal-content {
     background-color: #f1f1f1;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 500px;
-    max-height: 400px; 
+    width: 550px;
+    max-height: 450px; 
     overflow-y: auto;
-    filter: drop-shadow(1px 1px 15px rgb(255, 255, 255));
+    filter: drop-shadow(1px 1px 2px rgb(255, 255, 255));
 }
 
 /* Achievements list  */
@@ -179,12 +280,17 @@ body {
     text-align: left; 
 }
 
+.yvan {
+    color: #249344;
+  
+}
 
 #achievementsModal .achievement-category h4 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
     padding-left: 60px;
     color: #ff6f61;
+    padding-top: 30px ;
 }
 
 
@@ -247,73 +353,6 @@ body {
     }
 }
 
-
-
-@media (max-width: 700px) {
-
-    .container {
-       width: 75%;
-       margin-left: 2em;
-       margin-right: 2em;
-    }
-
-
-}
-
-@media (max-width: 600px) {
-
-    .container {
-        width: 75%;
-        margin-left: 2em;
-        margin-right: 2em;
-
-    }
-   
-}
-
-@media (max-width: 500px) {
-
-    .sm-header {
-        display: block;
-    }
-
-    .med-header {
-        display: none;
-    }
-
-    .container {
-        width: 60%;
-        margin-left: 2em;
-        margin-right: 2em;
-    }
-
-    .menu .menu-btn {
-        width: 100%;   
-        height: 60px; 
-    }
-
-    
-
-
-    
-}
-
-@media (max-width: 400px) {
-
-    .container {
-        width: 60%;
-        margin-left: 2em;
-        margin-right: 2em;
-    }
-
-    .menu .menu-btn {
-        width: 100%;   
-        height: 50px; 
-    }
-
-
-   
-}
 
 /* Add some variation to each bubble */
 .bubble:nth-child(odd) {
@@ -382,17 +421,24 @@ body {
 /* slide bar     /     profile settings */
 
 
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+  } */
 
-  .slide{
+  /* Core Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.slide {
     height: 100%;
-    width: 300px;
+    width: 280px;
     position: absolute;
-    background-color: #1b5a15;
+    background-color: #218838;
     transition: 0.5s ease;
     left: 0.4px;
     top: -0.4px;
@@ -401,137 +447,190 @@ body {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    transform: translateX(-200px);
-  }
+    transform: translateX(-301px);
+}
 
-  .t1{
+.t1 {
     text-align: right;
     font-size: 120%;
     padding: 20px 0;
     padding-right: 98px;
-  }
+    color: #e7ece7;    
+}
 
-  .slidelist{
+.slidelist {
     font-size: 80%;
     list-style: none;
+}
 
-  }
-
-  .userimg{
+.userimg {
     height: 100px;
     width: 100px;
     border-radius: 50%;
     display: block;
     margin: 20px auto 0;
-  }
+}
 
-  ul li a{
+ul li a {
     display: block;
     padding: 10px 0;
     padding-left: 30px;
-
-  }
-
-  input{
-    display: none;
-    visibility: hidden;
-    -webkit-appearance: none;
-    left: 30px;
-    position: absolute;
-  }
-
-  .toggle{
-    position: absolute;
-    height: 40px;
-    width: 40px;
-    background-color: #218838;
-    z-index: 1;
-    cursor: pointer;
-    border-radius: 10px; /**originally 10px**/
-    left: 240px;
-    top: 17px;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+    color: #e7ece7; 
 }
 
+.checkbox {
+    display: none;
+    visibility: hidden;
+    position: absolute;
+    left: 30px;
+}
 
+.toggle {
+    position: absolute;
+    height: 35px;
+    width: 38px;
+    background-color: rgb(40, 171, 28);
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 10px;
+    left: 13px;
+    top: 17px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
 
-  .toggle .common{
+.toggle .common {
     position: absolute;
     height: 3px;
     width: 25px;
-    background-color: #1b5a15;
+    /* background-color: #133d0f; */
+    background-color: #e7ece7;
     border-radius: 50px;
     transition: 0.3s ease;
-    
-  }
+}
 
-
-  .toggle .top_line{
+.toggle .top_line {
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
-  .toggle .middle_line{
+.toggle .middle_line {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
-  .toggle .bottom_line{
+.toggle .bottom_line {
     top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
-
-  input:checked ~ .toggle {
-    left: 440px; /* Move with the slide */
 }
 
-  input:checked ~ .toggle .top_line{
+/* Checkbox styles renamed */
+.checkbox:checked ~ .toggle {
+    transform: translateX(220px);
+    transition: transform 0.5s ease;
+}
+
+.checkbox:checked ~ .toggle .top_line {
     left: 2px;
     top: 17px;
     width: 35px;
     transform: rotate(45deg);
-  }
+}
 
-  input:checked ~ .toggle .bottom_line{
+.checkbox:checked ~ .toggle .bottom_line {
     left: 2px;
     top: 17px;
     width: 35px;
     transform: rotate(-45deg);
-  }
+}
 
-  input:checked ~ .toggle .middle_line{
-
+.checkbox:checked ~ .toggle .middle_line {
     transform: translateX(30px);
     opacity: 0;
-  }
+}
 
-  input:checked ~ .slide{
-    transform: translateX(0);
+.checkbox:checked ~ .slide {
+    transform: translateX(-1px);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  }
-
-  #game-version {
-    position: absolute;
-    bottom: 35px; 
-    left: 620px; 
-    font-size: 7px; 
-    color: white; 
-    font-family: 'Press Start 2P', cursive; 
-   
-   
 }
 
 #copyright {
     position: absolute; 
-    bottom: 20px;
-    left: 530px; 
+    bottom: 15px;
+    justify-content: center; 
     color: white;
-    font-size: 7px; 
+    font-size: 10px; 
     font-family: 'Press Start 2P', cursive; 
-  
+    z-index: -1;
+}
+
+/* Media Queries for Responsive Design*/
+
+@media (max-width: 700px) {
+
+    .container {
+        width: 95%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .menu .menu-btn {
+        width: 400px;
+    }
+
+    #copyright {
+        font-size: 8px;
+    }
+   
+}
+
+@media (max-width: 500px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .sm-header {
+        display: inline-block;
+    }
+
+    .med-header {
+        display: none;
+    }
+
+    .menu .menu-btn {
+        width: 100%;   
+        height: 60px; 
+    }
+
     
 }
+
+@media (max-width: 400px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .menu .menu-btn {
+        font-size: 15px;
+        width: 100%;   
+        height: 50px; 
+    }
+
+    #copyright {
+        font-size: 6px;
+    }
+   
+}
+
+

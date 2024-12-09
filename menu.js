@@ -9,7 +9,7 @@ const achievementsBtn = document.getElementById('achievementsBtn');
 const exitGameBtn = document.getElementById('exitGameBtn');
 
 // close buttons
-const closeSettingsModal = document.getElementById('closeSettingsModal');
+const closeSettingsModal = document.getElementById('closeModal');
 const closeAchievementsModal = document.getElementById('closeAchievementsModal');
 
 // modals
@@ -29,35 +29,29 @@ closeSettingsModal.addEventListener('click', () => {
     settingsModal.style.display = 'none';
 });
 
-
 closeAchievementsModal.addEventListener('click', () => {
     achievementsModal.style.display = 'none';
 });
 
 
-const yesExit = document.getElementById('yesExit');
-const noExit = document.getElementById('noExit');
-
-yesExit.addEventListener('click', () => {
-    localStorage.removeItem('token');
-    window.location.href = '/login';
+settingsBtn.addEventListener('click', () => {
+    settingsModal.style.display = 'flex';
 });
 
-// Handle No button (cancel exit)
-noExit.addEventListener('click', () => {
-    exitGameModal.style.display = 'none';
+closeSettingsModal.addEventListener('click', () => {
+    settingsModal.style.display = 'none';
 });
 
-// BackGround Music
+// BG MUSIC
 window.addEventListener('load', function() {
     const audio = document.getElementById('bg-music');
-    const volumeSlider = document.getElementById('volumeSetting');
-    const musicToggle = document.getElementById('musicSetting');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const musicToggle = document.getElementById('musicToggle');
 
     // Check if there's saved audio state in localStorage
     const savedMutedState = localStorage.getItem('audioMuted');
     const savedVolume = localStorage.getItem('audioVolume');
-    const savedIsPlaying = localStorage.getItem('audioIsPlaying');
+    const savedIsPlaying = localStorage.getItem('audioIsPlaying'); // Save playback state
 
     // Restore the saved volume
     if (savedVolume !== null) {
@@ -68,7 +62,7 @@ window.addEventListener('load', function() {
         volumeSlider.value = 50;
     }
 
-    // Handle mute/unmute toggle
+    // Restore the mute state
     if (savedMutedState === 'true') {
         audio.muted = true; // Muted audio when state is saved as true
         musicToggle.checked = false; // Set toggle to unchecked (mute state)
@@ -77,17 +71,15 @@ window.addEventListener('load', function() {
         musicToggle.checked = true; // Set toggle to checked (unmute state)
     }
 
-    // Function to attempt playing the audio (if it's unmuted)
-    function tryToPlayAudio() {
-        if (!audio.muted && audio.paused) {
-            audio.play().catch(err => {
-                console.log('Autoplay blocked or failed to play audio:', err);
-            });
-        }
+    // Restore playback state and try to resume if it was playing
+    if (savedIsPlaying === 'true' && !audio.paused) {
+        audio.play().catch((err) => {
+            console.log('Autoplay was blocked or failed:', err);
+        });
     }
 
-    // Handle the volume change
-    volumeSetting.addEventListener('input', function() {
+    // Handle volume change
+    volumeSlider.addEventListener('input', function() {
         const volume = volumeSlider.value / 100;
         audio.volume = volume;
         localStorage.setItem('audioVolume', volume); // Save volume in localStorage
@@ -99,7 +91,8 @@ window.addEventListener('load', function() {
             // Unmute the audio
             audio.muted = false;
             localStorage.setItem('audioMuted', 'false');
-            tryToPlayAudio(); // Try to play the audio if it's unmuted
+            // Try to play the audio if it was playing before
+            tryToPlayAudio();
         } else {
             // Mute the audio
             audio.muted = true;
@@ -108,14 +101,17 @@ window.addEventListener('load', function() {
         }
     });
 
-    // If the audio was playing before navigation, try to restore playback
-    if (savedIsPlaying === 'true') {
-        tryToPlayAudio();
+    // Function to attempt playing the audio if it's not muted
+    function tryToPlayAudio() {
+        if (!audio.muted && audio.paused) {
+            audio.play().catch((err) => {
+                console.log('Autoplay blocked or failed to play audio:', err);
+            });
+        }
     }
 
     // Save the audio state when the user navigates away or mutes/unmutes
     window.addEventListener('beforeunload', function() {
-        // Save whether the audio is playing or paused
         if (!audio.paused) {
             localStorage.setItem('audioIsPlaying', 'true');
         } else {
@@ -123,10 +119,17 @@ window.addEventListener('load', function() {
         }
     });
 
-    // Play the audio if it's not muted and it's not already playing
-    if (!audio.muted && savedIsPlaying !== 'true' && audio.paused) {
+    // Handle the initial state when the page loads (audio should play if it was previously playing)
+    if (!audio.muted && savedIsPlaying === 'true' && audio.paused) {
         tryToPlayAudio();
     }
+
+    // Handle audio ended event to prevent page reset
+    audio.addEventListener('ended', function() {
+        // Restart the music from the beginning, do not reload the page
+        audio.currentTime = 0; // Reset the audio to the beginning
+        audio.play(); // Restart the audio playback
+    });
 });
 
 // Function to play the click sound
@@ -141,25 +144,19 @@ function playClickSound() {
     }
 }
 
-// Function to play the click sound
-function playClickSound() {
-    const soundToggle = document.getElementById('soundToggle');
-    if (soundToggle && soundToggle.checked) { // Play sound only if toggle is on
-        const sound = document.getElementById('click-sound');
-        if (sound) {
-            sound.currentTime = 0;
-            sound.play();
-        }
-    }
-}
+// Initialize sound settings and bubbles
+window.onload = function () {
+    initializeSoundToggle();
+    createBubbles();
+};
 
 // Save sound toggle state to localStorage
-function saveSoundToggle(isEnabled) {
-    localStorage.setItem('soundToggle', isEnabled ? 'on' : 'off');
+function saveSoundSetting(isEnabled) {
+    localStorage.setItem('soundSetting', isEnabled ? 'on' : 'off');
 }
 
 // Load sound toggle state from localStorage
-function loadSoundToggle() {
+function loadSoundSetting() {
     const soundToggle = document.getElementById('soundToggle');
     const savedSetting = localStorage.getItem('soundSetting');
 
@@ -177,7 +174,7 @@ function initializeSoundToggle() {
 
         // Save the new setting whenever the toggle changes
         soundToggle.addEventListener('change', function () {
-            saveSoundToggle(soundToggle.checked);
+            saveSoundSetting(soundToggle.checked);
         });
     }
 }
@@ -215,3 +212,5 @@ function createBubbles() {
 
 // Call the function when the page loads
 window.onload = createBubbles;
+
+

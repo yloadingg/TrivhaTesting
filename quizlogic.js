@@ -81,6 +81,7 @@ function loadQuiz(category) {
 
     function nextQuestion() {
         stopTimer(); // Stop timer for the current question
+        resetAnswerButtons()
 
         currentQuestionIndex++;
         if (currentQuestionIndex < questionSet.length) {
@@ -129,30 +130,53 @@ function checkAnswer(selectedIndex, correctIndex, nextQuestionCallback) {
     }, 1500); // 1.5 seconds delay
 }
 
+
 // Result Container Handling
 function showResultContainer(correctAnswers, totalQuestions, avgTime) {
     const resultContainer = document.getElementById("resultContainer");
+    const quizContainer = document.getElementById("quizContainer");
     const resultMessage = document.getElementById("resultMessage");
     const totalScore = document.getElementById("totalScore");
     const averageTime = document.getElementById("averageTime");
+    createBubbles();
+    totalScore.textContent = `YOUR SCORE: ${correctAnswers} out of ${totalQuestions}`;
+    averageTime.textContent = `AVERAGE TIME PER QUESTION: ${avgTime} seconds`;
 
-    // Set the result text
-    resultMessage.textContent = `You completed the quiz!`;
-    totalScore.textContent = `Your Score: ${correctAnswers} out of ${totalQuestions}`;
-    averageTime.textContent = `Average Time per Question: ${avgTime} seconds`;
+ 
 
-    // Show the result container
-    resultContainer.style.display = "flex";
-    resultContainer.classList.remove("hidden");
-}
 
-function closeResultContainer() {
-    const resultContainer = document.getElementById("resultContainer");
-    resultContainer.style.display = "none"; // Hide the container when closed
-}
+    quizContainer.style.animation = "zoomOut 0.3s forwards";
+    quizContainer.addEventListener("animationend", function onAnimationEnd() {
+        quizContainer.classList.add("hidden");
+        quizContainer.style.display = "none";
+        quizContainer.style.animation = "";
+        quizContainer.removeEventListener("animationend", onAnimationEnd);
+        console.log("Animation ended");
+        // Show the result container
+        resultContainer.classList.remove("hidden");
+        resultContainer.style.display = "flex";
+        resultContainer.style.animation = "zoomIn 0.3s forwards";
+    });
 
-function restartQuiz() {
-    window.location.reload(); // Reload the page to restart the quiz
+    function closeResultContainer() {
+        const resultContainer = document.getElementById("resultContainer");
+        resultContainer.style.display = "none"; // Hide the container when closed
+    }
+    
+    function restartQuiz() {
+        window.location.reload(); // Reload the page to restart the quiz
+    }
+    
+    // Utility Functions
+    function calculateAverageTime() {
+        return Math.round(totalTimeUsed / questionSet.length) || 0;         
+    }
+    
+    
+    function restartQuiz() {
+        window.location.reload(); 
+    }
+    
 }
 
 // Utility Functions
@@ -404,6 +428,107 @@ function getQuestions(difficulty, category) {
     return questions[category][difficulty];
 }
 
+// Show Lifeline Modal
+function showLifelineModal() {
+    const lifelineModal = document.getElementById("lifelineModal");
+    lifelineModal.classList.remove("hidden");
+}
+
+// Close Lifeline Modal
+function closeLifelineModal() {
+    const lifelineModal = document.getElementById("lifelineModal");
+    lifelineModal.classList.add("hidden");
+}
+
+// Lifeline States
+let lifelines = {
+    extraTime: true,
+    removeAnswer: true,
+  //  showHint: true,
+};
 
 
 
+function useLifeline(type) {
+    if (!lifelines[type]) {
+        return;
+    }
+
+    // Get the corresponding button and disable it
+    const lifelineButton = document.querySelector(`button[data-lifeline="${type}"]`);
+    lifelineButton.disabled = true;
+    lifelineButton.style.backgroundColor = "#a4a4a4"; // Visually indicate it's disabled
+    lifelineButton.style.cursor = "not-allowed"; // Change cursor to indicate it's inactive
+
+    // Perform the action based on the lifeline type
+    switch (type) {
+        case 'extraTime':
+            addExtraTime();
+            break;
+        case 'removeAnswer':
+            removeIncorrectOption();
+            break;
+       // case 'showHint':
+       //     revealHint();
+       //     break;
+    }
+
+    lifelines[type] = false; // Mark lifeline as used
+    closeLifelineModal(); // Close modal after using lifeline
+}
+
+
+function addExtraTime() {
+    if (timeRemaining <= 90) {
+        timeRemaining += 30;
+        document.getElementById("timer").textContent = `:${timeRemaining}`;
+       
+    } else {
+        alert("Cannot exceed 90 seconds!");
+    }
+}
+
+function removeIncorrectOption() {
+    const currentQuestion = questionSet[currentQuestionIndex];
+    const correctIndex = currentQuestion.correctAnswer;
+    const answerButtons = document.querySelectorAll(".answer-btn");
+
+    let removed = false;
+    while (!removed) {
+        const randomIndex = Math.floor(Math.random() * 4);
+        if (randomIndex !== correctIndex && !answerButtons[randomIndex].disabled) {
+            answerButtons[randomIndex].disabled = true;
+            answerButtons[randomIndex].style.backgroundColor = "#d3d3d3";
+            removed = true;
+            
+        }
+    }
+
+
+}
+
+/*function revealHint() {
+    const currentQuestion = questionSet[currentQuestionIndex];
+    const hintText = document.getElementById("hint-text");
+
+    hintText.textContent = currentQuestion.hint || "No hint available for this question.";
+    hintText.style.display = "block";
+
+    alert("Hint revealed!");
+} */
+
+    function resetAnswerButtons() {
+        const answerButtons = document.querySelectorAll(".answer-btn");
+        answerButtons.forEach(button => {
+            button.disabled = false; // Re-enable all buttons
+            button.style.backgroundColor = ""; // Reset the background color
+            button.style.pointerEvents = "auto"; // Ensure the button is clickable
+        });
+    }
+    
+  
+
+
+  
+
+    

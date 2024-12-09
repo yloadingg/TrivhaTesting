@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify({ username, password }),
             });
+            
+             //ace samarita gonzales gener
+             //danrev lazo asistido kasongkamayan 
+             
 
             const data = await response.json();
 
@@ -34,3 +38,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+

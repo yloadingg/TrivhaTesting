@@ -4,7 +4,9 @@ function openCategoryModal(difficulty) {
     const categoryModal = document.getElementById("categoryModal");
     const modalDifficulty = document.getElementById("modal-difficulty");
     const iconContainer = document.getElementById("iconContainer"); // Target the icons container
-
+   
+    localStorage.setItem('selectedDifficulty', difficulty);
+        
     modalDifficulty.textContent = "Difficulty: " + difficulty;
 
     // Disable or hide icons
@@ -21,6 +23,7 @@ function openCategoryModal(difficulty) {
         categoryModal.classList.remove("hidden"); // Show the category modal
         categoryModal.style.display = "flex"; // Set display to flex to show it
         categoryModal.style.animation = "zoomIn 0.3s forwards"; // Apply zoom-in animation
+      
     });
 }
 
@@ -50,7 +53,7 @@ function selectCategory(category) {
     const categoryModal = document.getElementById("categoryModal");
     const quizContainer = document.getElementById("quizContainer");
     const questionText = document.getElementById("question-text");
-
+ 
     // Log selected category
     console.log("Selected Category: " + category);
 

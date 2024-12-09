@@ -49,10 +49,10 @@
 
         
         <div class="menu">
-            <button class="menu-btn" onclick="window.location.href='gamestart.html'">Start</button>
-            <button class="menu-btn" id="achievementsBtn">Achievements</button>
-            <button class="menu-btn" id="settingsBtn">Settings</button>
-            <button class="menu-btn" id="exitGameBtn">Exit Game</button>
+            <button class="menu-btn" onclick="window.location.href='gamestart.html'">START</button>
+            <button class="menu-btn" id="achievementsBtn">ACHIEVEMENTS</button>
+            <button class="menu-btn" id="settingsBtn">SETTINGS</button>
+            <button class="menu-btn" id="exitGameBtn">EXIT GAME</button>
         </div>
 
         <div id="achievementsModal" class="modal">
@@ -64,13 +64,13 @@
                     <div class="achievement-category">
                         <h4>History Achievements:</h4>
                         <div class="achievement-item">
-                            <span>History Buff – Answer 10 history questions correctly.</span>
+                            <span class="yvan">History Buff </span>– Answer 10 history questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>History Expert – Answer 20 history questions correctly.</span>
+                            <span class="yvan">History Expert </span>– Answer 20 history questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>Master of History – Answer all 30 history questions correctly.</span>
+                            <span class="yvan">Master of History</span> – Answer all 30 history questions correctly.
                         </div>
                     </div>
         
@@ -78,13 +78,13 @@
                     <div class="achievement-category">
                         <h4>Math Achievements:</h4>
                         <div class="achievement-item">
-                            <span>Math Enthusiast – Answer 10 math questions correctly.</span>
+                            <span class="yvan">Math Enthusiast</span> – Answer 10 math questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>Math Prodigy – Answer 20 math questions correctly.</span>
+                            <span class="yvan">Math Prodigy</span> – Answer 20 math questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>God of Math – Answer all 30 math questions correctly.</span>
+                            <span class="yvan">God of Math </span> – Answer all 30 math questions correctly.
                         </div>
                     </div>
         
@@ -92,13 +92,13 @@
                     <div class="achievement-category">
                         <h4>Science Achievements:</h4>
                         <div class="achievement-item">
-                            <span>Science Explorer – Answer 10 science questions correctly.</span>
+                            <span class="yvan">Science Explorer</span> – Answer 10 science questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>Science Guru – Answer 20 science questions correctly.</span>
+                            <span class="yvan">Science Guru </span>– Answer 20 science questions correctly.
                         </div>
                         <div class="achievement-item">
-                            <span>Science Sage – Answer all 30 science questions correctly.</span>
+                            <span class="yvan">Science Sage</span> – Answer all 30 science questions correctly.
                         </div>
                     </div>
         
@@ -106,20 +106,34 @@
                 <button id="closeAchievementsModal" class="close-btn">Back</button>
             </div>
         </div>
-        
-        <!-- Settings Modal -->
+
+        <!--Set modal-->
         <div id="settingsModal" class="modal">
             <div class="modal-content">
-                <h3>Settings</h3>
-                <label>Music</label>
-                <input type="checkbox" id="musicSetting"><br>
-                <label>Sound</label>
-                <input type="checkbox" id="soundToggle"><br>
-                <label>Volume</label>
-                <input type="range" min="0" max="100" id="volumeSetting"><br>
-                <button id="closeSettingsModal" class="close-btn">Back</button>
+               
+                <div class="setting-option">
+                    <span>Volume</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+                <div class="setting-option">
+                    <span>Music</span>
+                    <label class="switch">
+                        <input type="checkbox" id="musicToggle" class="switch-input">
+                        <span class="slider switch-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-option">
+                    <span>Sound</span>
+                    <label class="switch">
+                        <input type="checkbox" id="soundToggle" class="switch-input">
+                        <span class="slider switch-slider"></span>
+                    </label>
+                </div>
+                <button id="closeModal" class="back-btn">BACK</button>
             </div>
         </div>
+        
+    
 
         <!-- Exit Game Modal -->
         <div id="exitGameModal" class="modal">
@@ -145,54 +159,35 @@
 </div>
 
 
-    <!-- SLide bar ORI -->
-<!-- <label>
-
-    <div class="slide">
-        <input type="checkbox">
+    
+<!-- slide bar toggle -->
+<label>
+    <input type="checkbox" class="checkbox">
     <div class="toggle">
         <span class="top_line common"></span>
         <span class="middle_line common"></span>
         <span class="bottom_line common"></span>
-        </div>
-        <img class ="userimg" src="images/user.jfif" alt="user picture">
+    </div>
+    <div class="slide">
+        <img class="userimg" src="images/user.jfif" alt="user picture">
         <h1 class="t1">Profile</h1>
         <ul class="slidelist">
             <li><a>Upload Profile</a></li>
-            <li><a>Profile2</a></li>
-            <li><a>Profile3</a></li>
-            <li><a>Profile4</a></li>
-            <li><a>Profile5</a></li>
-            
+            <li><a>ohdevs@gmail.com</a></li>
+            <li><a></a></li>
+            <li><a></a></li>
+            <li><a></a></li>
         </ul>
-        
-    </div>
-</label> -->
-
-<!-- Slide bar GPT-->
-<input type="checkbox" id="menu-toggle">
-<label for="menu-toggle">
-    <div class="toggle">
-        <span class="top_line common"></span>
-        <span class="middle_line common"></span>
-        <span class="bottom_line common"></span>
     </div>
 </label>
-<div class="slide">
-    <img class="userimg" src="images/user.jfif" alt="user picture">
-    <h1 class="t1">Profile</h1>
-    <ul class="slidelist">
-        <li><a href="#">Upload Profile</a></li>
-        <li><a href="#">Profile2</a></li>
-        <li><a href="#">Profile3</a></li>
-        <li><a href="#">Profile4</a></li>
-        <li><a href="#">Profile5</a></li>
-    </ul>
-</div>
 
 
-
+<footer id="copyright">
+    © O'Devs 2024. All rights reserved.
+</footer>
 
     <script src="menu.js"></script>
+  
+    </script>
 </body>
 </html>
