@@ -42,6 +42,44 @@ closeSettingsModal.addEventListener('click', () => {
     settingsModal.style.display = 'none';
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const exitGameModal = document.getElementById('exitGameModal');
+    const yesExitButton = document.getElementById('yesExit');
+    const noExitButton = document.getElementById('noExit');
+
+    // Show the modal (you can trigger this event when necessary)
+    function showExitModal() {
+        exitGameModal.style.display = 'block';
+    }
+
+    // Hide the modal
+    function hideExitModal() {
+        exitGameModal.style.display = 'none';
+    }
+
+    // Handle "Yes" button click
+    yesExitButton.addEventListener('click', function () {
+        // Redirect to login page
+        window.location.href = '/login.html';
+    });
+
+    // Handle "No" button click
+    noExitButton.addEventListener('click', function () {
+        hideExitModal();
+    });
+
+    // Optional: Close modal when clicking outside the modal content
+    window.addEventListener('click', function (event) {
+        if (event.target === exitGameModal) {
+            hideExitModal();
+        }
+    });
+
+    // Example of showing the modal when a user performs a specific action
+    // Uncomment the line below to test the modal opening immediately
+    // showExitModal();
+});
+
 // BG MUSIC
 window.addEventListener('load', function() {
     const audio = document.getElementById('bg-music');

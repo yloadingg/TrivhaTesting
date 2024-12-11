@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Signup successful! Kupal.');
+                alert('Signup successful!.');
                 window.location.href = '/login.html';
             } else {
                 alert(`Signup failed: ${data.message}`);
@@ -30,3 +30,4 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+    
